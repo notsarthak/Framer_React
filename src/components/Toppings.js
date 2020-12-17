@@ -2,6 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const containerVariants = {
+  hidden: {
+    x: "100vw",
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      delay: 0.5,
+    },
+  },
+};
+
 const Toppings = ({ addTopping, pizza }) => {
   let toppings = [
     "mushrooms",
@@ -13,7 +28,12 @@ const Toppings = ({ addTopping, pizza }) => {
   ];
 
   return (
-    <div className="toppings container">
+    <motion.div
+      className="toppings container"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <h3>Step 2: Choose Toppings</h3>
       <ul>
         {toppings.map((topping) => {
@@ -23,7 +43,7 @@ const Toppings = ({ addTopping, pizza }) => {
               key={topping}
               onClick={() => addTopping(topping)}
               whileHover={{ scale: 1.3, color: "#f8e112", originX: 0 }}
-              transition={{type: "spring", stiffness: 300}}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <span className={spanClass}>{topping}</span>
             </motion.li>
@@ -42,7 +62,7 @@ const Toppings = ({ addTopping, pizza }) => {
           Order
         </motion.button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
