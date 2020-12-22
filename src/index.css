@@ -143,3 +143,7 @@ li span.active::before{
   background-color: #fff;
   margin: 50px auto;
 }
+
+.change-loader:hover {
+  cursor: pointer
+}
